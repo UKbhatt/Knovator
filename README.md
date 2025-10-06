@@ -1,6 +1,6 @@
 <div align="">
 
-# 📮 Posting
+# 📮 Knovator
 
 Robust Flutter app that lists posts, supports read/unread states, offline cache, and a clean modern UI.
 
