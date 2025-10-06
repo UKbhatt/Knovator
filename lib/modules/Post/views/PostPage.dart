@@ -16,7 +16,16 @@ class PostsPage extends StatelessWidget {
       init: PostsController(Get.find<PostRepository>()),
       builder: (controller) {
         return Scaffold(
-          appBar: AppBar(title: const Text('Posts')),
+          appBar: AppBar(
+            title: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Text('📮', style: TextStyle(fontSize: 18)),
+                SizedBox(width: 6),
+                Text('PostBox' , style: TextStyle(fontWeight: FontWeight.bold)),
+              ],
+            ),
+          ),
           body: Obx(() {
             if (controller.status.value == PostsStatus.loading &&
                 controller.posts.isEmpty) {
