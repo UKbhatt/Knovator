@@ -42,6 +42,17 @@ class PostsController extends GetxController {
       posts.assignAll(result.value);
       status.value = PostsStatus.idle;
     } else if (result is Err<List<Post>>) {
+      // Try cache only when network failed and UI has nothing to show
+      if (posts.isEmpty) {
+        final cached = repo.loadCachedPosts();
+        if (cached is Ok<List<Post>> && cached.value.isNotEmpty) {
+          posts.assignAll(cached.value);
+          // Keep a non-blocking error message; UI continues to show list
+          errorMessage.value = result.error.toString();
+          status.value = PostsStatus.idle;
+          return;
+        }
+      }
       status.value = PostsStatus.error;
       errorMessage.value = result.error.toString();
     }

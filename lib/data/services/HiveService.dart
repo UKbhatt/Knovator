@@ -5,9 +5,10 @@ class HiveService {
   Box get readBox => Hive.box('readBox');
   Box get metaBox => Hive.box('metaBox');
 
-  // Posts
+  // for Posts
   List<Map<String, dynamic>> getCachedPosts() {
-    final list = postsBox.get('posts', defaultValue: <Map<String, dynamic>>[]) as List?;
+    final list =
+        postsBox.get('posts', defaultValue: <Map<String, dynamic>>[]) as List?;
     return (list ?? []).cast<Map<String, dynamic>>();
   }
 
@@ -16,7 +17,7 @@ class HiveService {
     await metaBox.put('lastSync', DateTime.now().toIso8601String());
   }
 
-  // Read statuses
+  // To Read status 
   List<int> getReadIds() {
     final list = readBox.get('readIds', defaultValue: <int>[]) as List?;
     return (list ?? []).cast<int>();

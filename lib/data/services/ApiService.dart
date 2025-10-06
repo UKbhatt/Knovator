@@ -35,7 +35,7 @@ class ApiClient {
             options: Options(
               headers: {'User-Agent': _ua},
             ));
-        return res; // success (2xx due to validateStatus)
+        return res;
       } on DioException catch (e) {
         final status = e.response?.statusCode ?? 0;
         final isBlock = status == 403 || status == 429;
